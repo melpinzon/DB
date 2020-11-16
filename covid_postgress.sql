@@ -1,0 +1,155 @@
+-- DROP SCHEMA "COVIDDB";
+
+CREATE SCHEMA "COVIDDB" AUTHORIZATION postgres;
+
+-- DROP TYPE "COVIDDB"."_CONFIRMADOS_COVID";
+
+CREATE TYPE "COVIDDB"."_CONFIRMADOS_COVID" (
+	INPUT = array_in,
+	OUTPUT = array_out,
+	RECEIVE = array_recv,
+	SEND = array_send,
+	ANALYZE = array_typanalyze,
+	ALIGNMENT = 8,
+	STORAGE = any,
+	CATEGORY = A,
+	ELEMENT = "COVIDDB"."CONFIRMADOS_COVID",
+	DELIMITER = ',');
+
+-- DROP TYPE "COVIDDB"."_GEOUBICACION";
+
+CREATE TYPE "COVIDDB"."_GEOUBICACION" (
+	INPUT = array_in,
+	OUTPUT = array_out,
+	RECEIVE = array_recv,
+	SEND = array_send,
+	ANALYZE = array_typanalyze,
+	ALIGNMENT = 8,
+	STORAGE = any,
+	CATEGORY = A,
+	ELEMENT = "COVIDDB"."GEOUBICACION",
+	DELIMITER = ',');
+
+-- DROP TYPE "COVIDDB"."_MUERTES_COVID";
+
+CREATE TYPE "COVIDDB"."_MUERTES_COVID" (
+	INPUT = array_in,
+	OUTPUT = array_out,
+	RECEIVE = array_recv,
+	SEND = array_send,
+	ANALYZE = array_typanalyze,
+	ALIGNMENT = 8,
+	STORAGE = any,
+	CATEGORY = A,
+	ELEMENT = "COVIDDB"."MUERTES_COVID",
+	DELIMITER = ',');
+
+-- DROP TYPE "COVIDDB"."_RECUPERADOS_COVID";
+
+CREATE TYPE "COVIDDB"."_RECUPERADOS_COVID" (
+	INPUT = array_in,
+	OUTPUT = array_out,
+	RECEIVE = array_recv,
+	SEND = array_send,
+	ANALYZE = array_typanalyze,
+	ALIGNMENT = 8,
+	STORAGE = any,
+	CATEGORY = A,
+	ELEMENT = "COVIDDB"."RECUPERADOS_COVID",
+	DELIMITER = ',');
+
+-- DROP TYPE "COVIDDB"."_TAXONOMY_MVP";
+
+CREATE TYPE "COVIDDB"."_TAXONOMY_MVP" (
+	INPUT = array_in,
+	OUTPUT = array_out,
+	RECEIVE = array_recv,
+	SEND = array_send,
+	ANALYZE = array_typanalyze,
+	ALIGNMENT = 8,
+	STORAGE = any,
+	CATEGORY = A,
+	ELEMENT = "COVIDDB"."TAXONOMY_MVP",
+	DELIMITER = ',');
+-- "COVIDDB"."CONFIRMADOS_COVID" definition
+
+-- Drop table
+
+-- DROP TABLE "COVIDDB"."CONFIRMADOS_COVID";
+
+CREATE TABLE "COVIDDB"."CONFIRMADOS_COVID" (
+	"PK_REGISTRO" numeric(38) NULL,
+	"FK_UBICACION" numeric(38) NULL,
+	"DATE_REGISTROS" timestamp(0) NULL,
+	"VALORES" numeric(38) NULL
+);
+
+
+-- "COVIDDB"."GEOUBICACION" definition
+
+-- Drop table
+
+-- DROP TABLE "COVIDDB"."GEOUBICACION";
+
+CREATE TABLE "COVIDDB"."GEOUBICACION" (
+	"PK_UBICACION" numeric(38) NOT NULL,
+	"PROVINCE_STATE" varchar(200) NULL,
+	"COUNTRY_REGION" varchar(200) NULL,
+	"LATITUD" varchar(200) NULL,
+	"LONGITUD" varchar(200) NULL,
+	"FK_ISO_3166" varchar(200) NULL,
+	"REGION_CODE" numeric(38) NULL,
+	"SUB_REGION_CODE" numeric(38) NULL,
+	"INTERMEDIATE_REGION_CODE" numeric(38) NULL
+);
+
+
+-- "COVIDDB"."MUERTES_COVID" definition
+
+-- Drop table
+
+-- DROP TABLE "COVIDDB"."MUERTES_COVID";
+
+CREATE TABLE "COVIDDB"."MUERTES_COVID" (
+	"PK_REGISTRO" numeric(38) NOT NULL,
+	"FK_UBICACION" numeric(38) NOT NULL,
+	"DATE_REGISTROS" timestamp(0) NULL,
+	"VALORES" numeric(38) NULL
+);
+
+
+-- "COVIDDB"."RECUPERADOS_COVID" definition
+
+-- Drop table
+
+-- DROP TABLE "COVIDDB"."RECUPERADOS_COVID";
+
+CREATE TABLE "COVIDDB"."RECUPERADOS_COVID" (
+	"PK_REGISTRO" numeric(38) NULL,
+	"FK_UBICACION" numeric(38) NULL,
+	"DATE_REGISTROS" timestamp(0) NULL,
+	"VALORES" numeric(38) NULL
+);
+
+
+-- "COVIDDB"."TAXONOMY_MVP" definition
+
+-- Drop table
+
+-- DROP TABLE "COVIDDB"."TAXONOMY_MVP";
+
+CREATE TABLE "COVIDDB"."TAXONOMY_MVP" (
+	"ID_TAXONOMY" numeric(38) NOT NULL,
+	"PK_ISO_3166_3" varchar(30) NOT NULL,
+	"PREFERRED_TERM" varchar(200) NOT NULL,
+	"RW_API" varchar(200) NOT NULL,
+	"ENGLISH_SHORT" varchar(200) NOT NULL,
+	"LATITUDE" varchar(200) NOT NULL,
+	"LONGITUDE" varchar(200) NOT NULL,
+	"REGION_CODE" numeric(38) NOT NULL,
+	"REGION_NAME" varchar(15) NOT NULL,
+	"SUBREGION_CODE" numeric(38) NOT NULL,
+	"SUBREGION_NAME" varchar(60) NOT NULL,
+	"INTERMEDIATE_REGION_CODE" numeric(38) NOT NULL,
+	"INTERMEDIATE_REGION_NAME" varchar(60) NOT NULL
+);
